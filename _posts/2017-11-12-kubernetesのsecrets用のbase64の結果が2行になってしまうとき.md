@@ -35,6 +35,6 @@ long long long long long long long long long long secrets value</pre>
 
 &nbsp;
 
-ちなみに<span class="lang:default decode:true crayon-inline">echo &#8216;hoge&#8217; | base64</span>してもいいですが、<span class="lang:default decode:true crayon-inline">base64 <<< &#8216;hoge&#8217;</span> とした方が短くてスマートですね (こちらも知らなかった…)。
+ちなみに<span class="lang:default decode:true crayon-inline">echo &#8216;hoge&#8217; | base64</span>してもいいですが、<span class="lang:default decode:true crayon-inline">base64 &lt;&lt;&lt; &#8216;hoge&#8217;</span> とした方が短くてスマートですね (こちらも知らなかった…)。
 
 &nbsp;
