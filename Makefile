@@ -4,7 +4,7 @@ serve: _posts _config.yml
 build: _posts _config.yml
 	bundle exec jekyll build
 
-deploy: _site  _config.yml
+deploy: build _site  _config.yml
 	$(eval DATE := $(shell date +%Y%m%d%H%M%s))
 	docker build -t kter/blog:$(DATE) .
 	docker tag kter/blog:$(DATE) kter/blog:latest
