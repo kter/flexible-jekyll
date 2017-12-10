@@ -13,4 +13,4 @@ deploy: build _site  _config.yml
 	kubectl --insecure-skip-tls-verify set image deployments/blog blog=kter/blog:$(DATE)
 	kubectl --insecure-skip-tls-verify rollout status deployment/blog
 
-.PHONY: serve build push
+.PHONY: serve build deploy
