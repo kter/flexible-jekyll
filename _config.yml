@@ -1,5 +1,5 @@
 title: ことえりブログ
-description: > # this means to ignore newlines until "baseurl:"
+description: >
   日記や技術系の記事を書きます。
   Linux, AWS系がメイン。
 #permalink: ':title/'
@@ -10,7 +10,9 @@ site-twitter: "" #if your site has a twitter account, enter it here
 # Author Settings
 author: kter # add your name
 author-img: kter.png # add your photo
-about-author:  # add description
+about-author: >
+  日記や技術系の記事を書きます。
+  Linux, AWS系がメイン。
 twitter: kter # add your Twitter handle
 facebook: # add your Facebook handle
 github: kter # add your Github handle
