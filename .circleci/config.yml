@@ -42,25 +42,33 @@ jobs:
           command: docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
 
       - save_cache:
-        paths:
-          - /opt/google-cloud-sdk
-          - ${HOME}
-        key: v1-dependencies-{{ checksum "/opt/google-cloud-sdk/bin/gcloud" }}
+          paths:
+            - /opt/google-cloud-sdk
+            - ${HOME}
+          key: v1-dependencies-{{ checksum "/opt/google-cloud-sdk/bin/gcloud" }}
 
       - run:
-        name: build html
-        command: |
-          bundle exec jekyll build
+          name: build html
+          command: bundle exec jekyll build
 
       - run:
-        name: deploy
-        command: |
-          docker build -t kter/blog:$CIRCLE_SHA1 .
-          docker tag kter/blog:$CIRCLE_SHA1 kter/blog:latest
-          docker push kter/blog:$CIRCLE_SHA1
-          docker push kter/blog:latest
-          kubectl set image deployments/blog blog=kter/blog:$CIRCLE_SHA1
-          kubectl rollout status deployment/blog
+          name: deploy
+          command: docker build -t kter/blog:$CIRCLE_SHA1 .
+      - run:
+          name: deploy
+          command: docker tag kter/blog:$CIRCLE_SHA1 kter/blog:latest
+      - run:
+          name: deploy
+          command: docker push kter/blog:$CIRCLE_SHA1
+      - run:
+          name: deploy
+          command: docker push kter/blog:latest
+      - run:
+          name: deploy
+          command: kubectl set image deployments/blog blog=kter/blog:$CIRCLE_SHA1
+      - run:
+          name: deploy
+          command: kubectl rollout status deployment/blog
 
       # collect reports
       - store_test_results:
