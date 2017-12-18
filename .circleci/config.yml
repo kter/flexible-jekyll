@@ -40,6 +40,9 @@ jobs:
       - run:
           name: setup jekyll
           command: bundle install --path vendor/bundle
+      - run:
+          name: setup jekyll dependencies
+          command: apt install -y libxml2-dev
 
       - run:
           name: build html
