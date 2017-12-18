@@ -1,10 +1,4 @@
 version: 2
-machine:
-  environment:
-    PROJECT_NAME: PersonalProjects
-    CLUSTER_NAME: main-01
-    CLOUDSDK_COMPUTE_ZONE: us-west1-a
-    DEBIAN_FRONTEND: noninteractive
 jobs:
   build:
     docker:
@@ -30,7 +24,7 @@ jobs:
           command: gcloud --quiet config set container/cluster $CLUSTER_NAME
       - run:
           name: setup dependencies
-          command: gcloud config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
+          command: gcloud config set compute/zone us-west1-a
       - run:
           name: setup dependencies
           command: gcloud --quiet container clusters get-credentials $CLUSTER_NAME
