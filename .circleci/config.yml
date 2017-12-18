@@ -1,0 +1,34 @@
+machine:
+  environment:
+    PROJECT_NAME: PersonalProjects
+    CLUSTER_NAME: main-01
+    CLOUDSDK_COMPUTE_ZONE: us-west1-a
+    DEBIAN_FRONTEND: noninteractive
+  services:
+    - docker
+
+dependencies:
+  pre:
+    # https://circleci.com/docs/1.0/google-auth/
+    - echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
+    - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
+    - sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+    - sudo /opt/google-cloud-sdk/bin/gcloud config set project personalprojects-189010
+    - sudo /opt/google-cloud-sdk/bin/gcloud --quiet config set container/cluster $CLUSTER_NAME
+    # Reading the zone from the env var is not working so we set it here
+    - sudo /opt/google-cloud-sdk/bin/gcloud config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
+    - sudo /opt/google-cloud-sdk/bin/gcloud --quiet container clusters get-credentials $CLUSTER_NAME
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+
+deployment:
+  pre:
+    - bundle exec jekyll build
+  prod:
+    branch: stage
+    command: |
+      docker build -t kter/blog:$CIRCLE_SHA1 .
+      docker tag kter/blog:$CIRCLE_SHA1 kter/blog:latest
+      docker push kter/blog:$CIRCLE_SHA1
+      docker push kter/blog:latest
+      kubectl set image deployments/blog blog=kter/blog:$CIRCLE_SHA1
+      kubectl rollout status deployment/blog
