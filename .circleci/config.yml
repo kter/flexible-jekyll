@@ -43,6 +43,9 @@ jobs:
       - run:
           name: setup jekyll dependencies
           command: apt install -y libxml2-dev
+      - run:
+          name: setup jekyll dependencies
+          command: apt install -y zlib1g-dev
 
       - run:
           name: build html
