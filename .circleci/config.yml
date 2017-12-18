@@ -36,7 +36,7 @@ jobs:
           command: docker login -u $DOCKER_USER --password-stdin <<< $DOCKER_PASS
       - run:
           name: setup bundler
-          command: apt install -y bundler
+          command: apt install -y bundler libxml2-dev zlib1g-dev libxml2
       - run:
           name: setup jekyll
           command: bundle install --path vendor/bundle
