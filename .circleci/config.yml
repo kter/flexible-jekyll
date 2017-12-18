@@ -21,13 +21,13 @@ jobs:
           command: gcloud config set project personalprojects-189010
       - run:
           name: setup dependencies
-          command: gcloud --quiet config set container/cluster $CLUSTER_NAME
+          command: gcloud --quiet config set container/cluster main-01
       - run:
           name: setup dependencies
           command: gcloud config set compute/zone us-west1-a
       - run:
           name: setup dependencies
-          command: gcloud --quiet container clusters get-credentials $CLUSTER_NAME
+          command: gcloud --quiet container clusters get-credentials main-01
       - run:
           name: setup dependencies
           command: docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
