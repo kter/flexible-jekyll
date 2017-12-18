@@ -8,7 +8,7 @@ machine:
 jobs:
   build:
     docker:
-      - image: ruby:2.3.6-jessie
+      - image: google/cloud-sdk:latest
 
     working_directory: ~/repo
 
