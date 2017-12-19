@@ -16,31 +16,17 @@ jobs:
           name: setup gcloud
           command: |
             curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-170.0.1-linux-x86_64.tar.gz | tar zx
+            echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
+            google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+            google-cloud-sdk/bin/gcloud config set project personalprojects-189010
+            google-cloud-sdk/bin/gcloud --quiet config set container/cluster main-01
+            google-cloud-sdk/bin/gcloud config set compute/zone us-west1-a
+            google-cloud-sdk/bin/gcloud --quiet container clusters get-credentials main-01
         #- run:
         #-   name: setup docker
         #-   command: |
         #-     curl -O  https://download.docker.com/linux/debian/dists/jessie/pool/stable/amd64/docker-ce_17.09.0~ce-0~debian_amd64.deb
         #-     dpkg -i docker-ce_17.09.0~ce-0~debian_amd64.deb
-
-      - run:
-          name: setup dependencies
-          # https://circleci.com/docs/1.0/google-auth/
-          command: echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
-      - run:
-          name: setup dependencies
-          command: $CIRCLE_WORKING_DIRECTORY/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
-      - run:
-          name: setup dependencies
-          command: $CIRCLE_WORKING_DIRECTORY/google-cloud-sdk/bin/gcloud config set project personalprojects-189010
-      - run:
-          name: setup dependencies
-          command: $CIRCLE_WORKING_DIRECTORY/google-cloud-sdk/bin/gcloud --quiet config set container/cluster main-01
-      - run:
-          name: setup dependencies
-          command: $CIRCLE_WORKING_DIRECTORY/google-cloud-sdk/bin/gcloud config set compute/zone us-west1-a
-      - run:
-          name: setup dependencies
-          command: $CIRCLE_WORKING_DIRECTORY/google-cloud-sdk/bin/gcloud --quiet container clusters get-credentials main-01
 
       - run:
           name: setup docker
