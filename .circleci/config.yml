@@ -41,23 +41,18 @@ jobs:
           command: bundle exec jekyll build
 
       - run:
-          name: deploy
-          command: docker build -t kter/blog:$CIRCLE_SHA1 .
+          name: build image
+          command: |
+            docker build -t kter/blog:$CIRCLE_SHA1 .
+            docker tag kter/blog:$CIRCLE_SHA1 kter/blog:latest
+            docker push kter/blog:$CIRCLE_SHA1
+            docker push kter/blog:latest
+
       - run:
-          name: deploy
-          command: docker tag kter/blog:$CIRCLE_SHA1 kter/blog:latest
-      - run:
-          name: deploy
-          command: docker push kter/blog:$CIRCLE_SHA1
-      - run:
-          name: deploy
-          command: docker push kter/blog:latest
-      - run:
-          name: deploy
-          command: google-cloud-sdk/bin/kubectl set image deployments/blog blog=kter/blog:$CIRCLE_SHA1
-      - run:
-          name: deploy
-          command: google-cloud-sdk/bin/kubectl rollout status deployment/blog
+          name: deploy to kubernetes
+          command: |
+            google-cloud-sdk/bin/kubectl set image deployments/blog blog=kter/blog:$CIRCLE_SHA1
+            google-cloud-sdk/bin/kubectl rollout status deployment/blog
 
       # collect reports
       - store_test_results:
