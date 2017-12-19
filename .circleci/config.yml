@@ -54,10 +54,10 @@ jobs:
           command: docker push kter/blog:latest
       - run:
           name: deploy
-          command: kubectl set image deployments/blog blog=kter/blog:$CIRCLE_SHA1
+          command: google-cloud-sdk/bin/kubectl set image deployments/blog blog=kter/blog:$CIRCLE_SHA1
       - run:
           name: deploy
-          command: kubectl rollout status deployment/blog
+          command: google-cloud-sdk/bin/kubectl rollout status deployment/blog
 
       # collect reports
       - store_test_results:
