@@ -16,7 +16,10 @@ jobs:
           name: setup gcloud
           command: |
             curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-170.0.1-linux-x86_64.tar.gz | tar zx
-            PATH=$PATH:~/repo/google-cloud-sdk/bin/
+            PATH=$PATH:$PWD/google-cloud-sdk/bin/
+            echo $PATH
+            echo $PWD
+            whereis gcloud || true
         #- run:
         #-   name: setup docker
         #-   command: |
