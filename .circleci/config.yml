@@ -16,10 +16,6 @@ jobs:
           name: setup gcloud
           command: |
             curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-170.0.1-linux-x86_64.tar.gz | tar zx
-            PATH=$PATH:$PWD/google-cloud-sdk/bin/
-            echo $PATH
-            echo $PWD
-            whereis gcloud || true
         #- run:
         #-   name: setup docker
         #-   command: |
@@ -32,19 +28,19 @@ jobs:
           command: echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
       - run:
           name: setup dependencies
-          command: gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+          command: $CIRCLE_WORKING_DIRECTORY/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
       - run:
           name: setup dependencies
-          command: gcloud config set project personalprojects-189010
+          command: $CIRCLE_WORKING_DIRECTORY/google-cloud-sdk/bin/gcloud config set project personalprojects-189010
       - run:
           name: setup dependencies
-          command: gcloud --quiet config set container/cluster main-01
+          command: $CIRCLE_WORKING_DIRECTORY/google-cloud-sdk/bin/gcloud --quiet config set container/cluster main-01
       - run:
           name: setup dependencies
-          command: gcloud config set compute/zone us-west1-a
+          command: $CIRCLE_WORKING_DIRECTORY/google-cloud-sdk/bin/gcloud config set compute/zone us-west1-a
       - run:
           name: setup dependencies
-          command: gcloud --quiet container clusters get-credentials main-01
+          command: $CIRCLE_WORKING_DIRECTORY/google-cloud-sdk/bin/gcloud --quiet container clusters get-credentials main-01
 
       - run:
           name: setup docker
