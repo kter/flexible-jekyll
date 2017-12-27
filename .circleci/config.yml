@@ -34,7 +34,7 @@ jobs:
       - run:
           name: setup jekyll
           command: |
-            apk add libffi-dev build-base libxml2-dev libxslt-dev
+            apk add libffi-dev build-base libxml2-dev libxslt-dev imagemagick-dev
             bundle install --path vendor/bundle
       - run:
           name: build html
