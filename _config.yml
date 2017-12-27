@@ -31,14 +31,12 @@ plugins_dir:
   - jekyll-sitemap
   - jekyll-paginate
   - jemoji
+  - jekyll-responsive-image
 
 paginate: 8
 paginate_path: "/page/:num"
 
 exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock", "vendor"]
-
-gems:
-  - jekyll-responsive-image
 
 responsive_image:
   # [Required]
@@ -81,7 +79,7 @@ responsive_image:
   #   %{width}       Width of the resized image
   #   %{height}      Height of the resized image
   #
-  output_path_format: assets/resized/%{basename}/%{width}
+  output_path_format: assets/resized/%{width}/%{basename}
 
   # [Optional, Default: true]
   # Whether or not to save the generated assets into the source folder.

@@ -30,6 +30,9 @@ GEM
       rouge (>= 1.7, < 3)
       safe_yaml (~> 1.0)
     jekyll-paginate (1.1.0)
+    jekyll-responsive-image (1.4.0)
+      jekyll (>= 2.0, < 4.0)
+      rmagick (>= 2.0, < 3.0)
     jekyll-sass-converter (1.5.1)
       sass (~> 3.4)
     jekyll-sitemap (1.1.1)
@@ -58,6 +61,7 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    rmagick (2.16.0)
     rouge (2.2.1)
     ruby_dep (1.5.0)
     safe_yaml (1.0.4)
@@ -75,8 +79,9 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll-paginate
+  jekyll-responsive-image
   jekyll-sitemap
   jemoji
 
 BUNDLED WITH
-   1.13.7
+   1.16.1
