@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: ruby:2.3.6-jessie
+      - image: ruby:2.3.6-alpine3.4
 
     working_directory: ~/repo
 
