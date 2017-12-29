@@ -1,6 +1,6 @@
-FROM nginx:1.13.7-alpine
+FROM openresty/openresty:alpine
 
-COPY _site /usr/share/nginx/html
+COPY _site /usr/local/openresty/nginx/html
 
 EXPOSE 80
 
