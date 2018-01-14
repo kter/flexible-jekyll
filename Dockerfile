@@ -1,4 +1,4 @@
-FROM nginx:1.13.7-alpine
+FROM kter/nginx-vts-module:2018011421241515932690
 
 COPY _site /usr/share/nginx/html
 
