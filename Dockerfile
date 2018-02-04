@@ -1,4 +1,4 @@
-FROM kter/nginx-vts-module:2018011421241515932690
+FROM kter/nginx-module-vts:1.12.2-0.1.15
 
 COPY _site /usr/share/nginx/html
 
