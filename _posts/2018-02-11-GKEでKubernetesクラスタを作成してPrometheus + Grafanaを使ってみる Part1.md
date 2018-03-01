@@ -1,6 +1,6 @@
 ---
 id: 575
-title: "GKEでなるべく安くKubernetesクラスタを作成してPrometheus + Grafanaを使ってみる Part1"
+title: "GKEでなるべく安くKubernetesクラスタを作成してPrometheus + Grafanaを使ってみる Part1 -クラスタ作成編-"
 date: 2018-02-11T11:38:00+09:00
 author: kter
 layout: post
