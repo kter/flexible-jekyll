@@ -48,11 +48,11 @@ jobs:
             docker push kter/blog:$CIRCLE_SHA1
             docker push kter/blog:latest
 
-      - run:
-          name: deploy to kubernetes
-          command: |
-            google-cloud-sdk/bin/kubectl set image deployments/blog blog=kter/blog:$CIRCLE_SHA1
-            google-cloud-sdk/bin/kubectl rollout status deployment/blog
+#      - run:
+#          name: deploy to kubernetes
+#          command: |
+#            google-cloud-sdk/bin/kubectl set image deployments/blog blog=kter/blog:$CIRCLE_SHA1
+#            google-cloud-sdk/bin/kubectl rollout status deployment/blog
 
       # collect reports
       - store_test_results:
