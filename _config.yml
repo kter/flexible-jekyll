@@ -2,6 +2,7 @@ title: ことえりブログ
 description: >
   日記や技術系の記事を書きます。
   Linux, AWS系がメイン。
+  01
 #permalink: ':title/'
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
