@@ -46,7 +46,7 @@ jobs:
             docker build -t kter/blog:$CIRCLE_SHA1 .
             # docker tag kter/blog:$CIRCLE_SHA1 kter/blog:latest
             docker push kter/blog:$CIRCLE_SHA1
-            docker push kter/blog:latest
+            # docker push kter/blog:latest
 
 #      - run:
 #          name: deploy to kubernetes
